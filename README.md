@@ -57,4 +57,5 @@ O novo projeto segue rigorosamente os princípios de **Clean Architecture**, div
 1.  Clone o repositório.
 2.  Mude para a *branch* `mvvm`: `git checkout mvvm`
 3.  Abra o projeto no Android Studio.
-4.  Execute-o em um emulador ou dispositivo físico.
+4.  No arquivo apikey.properties, adicione seu Token da Api: API_TOKEN=YOUR_TOKEN_HERE 
+5.  Execute-o em um emulador ou dispositivo físico.
