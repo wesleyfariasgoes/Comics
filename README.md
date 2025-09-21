@@ -2,7 +2,7 @@
 
 ![Badge em Desenvolvimento](http://img.shields.io/static/v1?label=STATUS&message=%20DESENVOLVIDO&color=GREEN&style=for-the-badge)
 
-<img src="https://github.com/wesleyfariasgoes/images/blob/main/Screenshot_20250921_093256.png" width="210">
+<img src="https://github.com/wesleyfariasgoes/images/blob/main/Screenshot_20250921_103147.png" width="210">
 
 Este `README` documenta as mudanças arquiteturais e tecnológicas implementadas na *branch* `mvvm`, comparadas à *branch* `master`.
 
