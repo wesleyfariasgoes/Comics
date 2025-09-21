@@ -41,11 +41,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
 
     buildFeatures {
@@ -88,12 +88,12 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     //teste
-    testImplementation("org.mockito:mockito-core:4.8.0")
-    testImplementation("org.mockito.kotlin:mockito-kotlin:4.0.0")
+    testImplementation("org.mockito:mockito-core:5.20.0")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:6.0.0")
     testImplementation("androidx.arch.core:core-testing:2.2.0")
-// Para testar LiveData
+    // Para testar LiveData
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.1")
-// Para testar Coroutines
+    // Para testar Coroutines
 
     //compose coil
     implementation(libs.coil.compose)

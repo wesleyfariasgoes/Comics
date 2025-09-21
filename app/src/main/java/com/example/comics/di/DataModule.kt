@@ -2,7 +2,6 @@ package com.example.comics.di
 
 import com.example.comics.data.api.Api
 import com.example.comics.data.network.MovieProvider
-import com.google.firebase.appdistribution.gradle.ApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

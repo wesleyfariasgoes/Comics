@@ -2,11 +2,9 @@ package com.example.comics.data.repository
 
 import com.example.comics.BuildConfig
 import com.example.comics.data.api.Api
-import com.example.comics.data.model.MovieResponse
 import com.example.comics.domain.model.Movie
 import com.example.comics.domain.repository.MovieRepository
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 

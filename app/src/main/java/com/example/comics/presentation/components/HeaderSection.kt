@@ -26,7 +26,7 @@ fun HeaderSection(onBellClick: () -> Unit = {}) {
             .padding(16.dp)
     ) {
         Text(
-            text = "MDB Movies",
+            text = "IMDB Movies",
             fontSize = 18.sp,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.weight(1f)

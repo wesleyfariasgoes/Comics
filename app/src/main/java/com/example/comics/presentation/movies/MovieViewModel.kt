@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.comics.domain.model.Movie
 import com.example.comics.domain.usecase.GetMoviesUseCase
+import com.example.comics.presentation.state.MovieState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -16,8 +17,8 @@ class MovieViewModel @Inject constructor(
     private val getMoviesUseCase: GetMoviesUseCase
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow(MovieUiState())
-    val uiState: StateFlow<MovieUiState> = _uiState.asStateFlow()
+    private val _uiState = MutableStateFlow(MovieState())
+    val uiState: StateFlow<MovieState> = _uiState.asStateFlow()
 
     init {
         fetchMovies()
@@ -34,9 +35,4 @@ class MovieViewModel @Inject constructor(
             }
         }
     }
-
-    data class MovieUiState(
-        val isLoading: Boolean = false,
-        val movies: List<Movie> = emptyList()
-    )
 }

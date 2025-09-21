@@ -17,16 +17,20 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
+import com.example.comics.R
 import com.example.comics.domain.model.Movie
+import com.example.comics.presentation.state.MovieState
 import com.example.comics.ui.theme.ComicsTheme
 
 @Composable
-fun MovieScreen(uiState: MovieViewModel.MovieUiState) {
+fun MovieScreen(uiState: MovieState) {
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
@@ -41,7 +45,7 @@ fun MovieScreen(uiState: MovieViewModel.MovieUiState) {
             }
 
             else -> {
-                Text(text = "Nenhum filme encontrado.")
+                Text(text = stringResource(R.string.no_film_found))
             }
         }
     }
@@ -89,7 +93,9 @@ fun MovieItem(movie: Movie) {
                 text = movie.overview ?: "",
                 fontSize = 14.sp,
                 color = Color.Black,
-                modifier = Modifier.padding(top = 4.dp)
+                modifier = Modifier.padding(top = 4.dp),
+                maxLines = 4,
+                overflow = TextOverflow.Ellipsis
             )
         }
     }
@@ -101,7 +107,7 @@ fun MovieItem(movie: Movie) {
 fun MovieScreenPreview() {
     ComicsTheme {
         MovieScreen(
-            uiState = MovieViewModel.MovieUiState(
+            uiState = MovieState(
                 isLoading = false,
                 movies = listOf(
                     Movie(1, "O Cavaleiro das Trevas", "2008-07-16", ""),
