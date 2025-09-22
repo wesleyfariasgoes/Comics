@@ -96,7 +96,6 @@ fun MovieItem(movie: Movie) {
             modifier = Modifier.padding(16.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            // Imagem do filme (pôster).
             AsyncImage(
                 model = movie.posterPath,
                 contentDescription = movie.title,
