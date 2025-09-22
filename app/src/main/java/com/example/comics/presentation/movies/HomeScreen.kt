@@ -6,14 +6,13 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.example.comics.presentation.components.HeaderSection
-import com.example.comics.presentation.state.MovieState
 
 @Composable
-fun HomeScreen(uiState: MovieState) {
+fun HomeScreen() {
     Box(Modifier.fillMaxSize()) {
         Column {
             HeaderSection(onBellClick = {})
-            MovieScreen(uiState)
+            MovieScreen()
         }
     }
 }

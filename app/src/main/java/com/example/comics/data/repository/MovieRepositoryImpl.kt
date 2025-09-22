@@ -2,33 +2,22 @@ package com.example.comics.data.repository
 
 import com.example.comics.BuildConfig
 import com.example.comics.data.api.Api
-import com.example.comics.domain.model.Movie
+import com.example.comics.data.mapper.toDomain
+import com.example.comics.data.model.PaginatedMovies
 import com.example.comics.domain.repository.MovieRepository
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class MovieRepositoryImpl @Inject constructor(
-    private val api: Api
+    private val api: Api,
 ) : MovieRepository {
-    override suspend fun getMovies(): List<Movie> {
-        val token = BuildConfig.API_TOKEN
+    val token = BuildConfig.API_TOKEN
+    override suspend fun getMovies(page: Int): PaginatedMovies {
+        val response = api.getDay(token = token,page = page)
+        val movies = response.results.map { it.toDomain() }
 
-        return withContext(Dispatchers.IO) {
-            val response = api.getDay(token)
-            if (response.isSuccessful) {
-                response.body()?.results?.map { movieDto ->
-                    Movie(
-                        id = movieDto.id,
-                        title = movieDto.title,
-                        overview = movieDto.overview,
-                        posterPath = movieDto.getPosterUrl()
-                    )
-                } ?: emptyList()
-            } else {
-                emptyList()
-            }
-        }
+        return PaginatedMovies(
+            movies = movies,
+            totalPages = response.totalPages
+        )
     }
-
 }

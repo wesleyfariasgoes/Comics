@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Comics</string>
     <string name="no_film_found">Nenhum filme encontrado.</string>
+    <string name="tmdb_movies_title">TMDB Movies</string>
 </resources>

@@ -1,14 +1,13 @@
-package com.example.comics.presentation.movies
+package com.example.comics.presentation.viewmodel
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.comics.domain.model.Movie
 import com.example.comics.domain.usecase.GetMoviesUseCase
-import com.example.comics.presentation.state.MovieState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -17,21 +16,37 @@ class MovieViewModel @Inject constructor(
     private val getMoviesUseCase: GetMoviesUseCase
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow(MovieState())
-    val uiState: StateFlow<MovieState> = _uiState.asStateFlow()
+    var movies by mutableStateOf(emptyList<Movie>())
+        private set
+    var isLoading by mutableStateOf(false)
+        private set
+
+    private var currentPage by mutableStateOf(1)
+
+    var endOfList by mutableStateOf(false)
+        private set
 
     init {
         fetchMovies()
     }
 
-    private fun fetchMovies() {
+    fun fetchMovies() {
+        if (isLoading || endOfList) return
+        isLoading = true
+
         viewModelScope.launch {
-            _uiState.value = _uiState.value.copy(isLoading = true)
             try {
-                val movies = getMoviesUseCase()
-                _uiState.value = _uiState.value.copy(movies = movies, isLoading = false)
+                val newMovies = getMoviesUseCase(page = currentPage)
+                if (newMovies.isEmpty()) {
+                    endOfList = true
+                } else {
+                    movies = movies + newMovies
+                    currentPage++
+                }
             } catch (e: Exception) {
-                _uiState.value = _uiState.value.copy(movies = emptyList(), isLoading = false)
+                println("Erro ao buscar filmes: ${e.message}")
+            } finally {
+                isLoading = false
             }
         }
     }
