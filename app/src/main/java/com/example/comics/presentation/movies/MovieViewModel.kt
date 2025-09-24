@@ -19,12 +19,10 @@ class MovieViewModel @Inject constructor(
     var movies by mutableStateOf(emptyList<Movie>())
         private set
     var isLoading by mutableStateOf(false)
-        private set
 
     private var currentPage by mutableStateOf(1)
 
     var endOfList by mutableStateOf(false)
-        private set
 
     init {
         fetchMovies()
