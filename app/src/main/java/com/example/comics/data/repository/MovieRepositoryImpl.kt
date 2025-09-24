@@ -12,7 +12,7 @@ class MovieRepositoryImpl @Inject constructor(
 ) : MovieRepository {
     val token = BuildConfig.API_TOKEN
     override suspend fun getMovies(page: Int): PaginatedMovies {
-        val response = api.getDay(token = token,page = page)
+        val response = api.getDay(token = token,page = page, language = "pt-BR")
         val movies = response.results.map { it.toDomain() }
 
         return PaginatedMovies(
