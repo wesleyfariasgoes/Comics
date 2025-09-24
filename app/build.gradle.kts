@@ -8,6 +8,7 @@ plugins {
     alias(libs.plugins.googleDevtoolsKsp)
     alias(libs.plugins.dagger.hilt)
     alias(libs.plugins.androidxNavigationSafeargsKotlin)
+    alias(libs.plugins.kotlin.parcelize)
 }
 
 val apiKeyPropertiesFile = rootProject.file("apikey.properties")

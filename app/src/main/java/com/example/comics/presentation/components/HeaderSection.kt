@@ -8,33 +8,51 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.comics.R
+import com.example.comics.ui.theme.ComicsTheme
 
 @Composable
-@Preview
-fun HeaderSection(onBellClick: () -> Unit = {}) {
+fun HeaderSection(
+    title: String = "",
+    showBackButton: Boolean = true,
+    onBackClick: () -> Unit = {}
+) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .statusBarsPadding()
-            .padding(16.dp)
+            .padding(16.dp),
+        verticalAlignment = Alignment.CenterVertically
     ) {
+        if (showBackButton) {
+            Image(
+                painter = painterResource(R.drawable.ic_arrow_left),
+                contentDescription = "Voltar",
+                modifier = Modifier
+                    .clickable { onBackClick() }
+                    .padding(end = 16.dp),
+            )
+        }
         Text(
-            text = stringResource(R.string.tmdb_movies_title),
+            text = title,
             fontSize = 18.sp,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.weight(1f)
         )
-        Image(painter = painterResource(R.drawable.bell),
-            contentDescription = null,
-            modifier = Modifier.clickable { onBellClick() }
-        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun HeaderSectionPreview() {
+    ComicsTheme {
+        HeaderSection(title = "Comics App", onBackClick = {})
     }
 }

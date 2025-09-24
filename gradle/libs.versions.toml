@@ -65,7 +65,7 @@ androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = 
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
-kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
+kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize" }
 googleDevtoolsKsp = { id = "com.google.devtools.ksp", version.ref = "ksp" } # Plugin KSP
 dagger-hilt = { id = "com.google.dagger.hilt.android", version.ref = "daggerHilt" } # Este está correto.
 androidxNavigationSafeargsKotlin = { id = "androidx.navigation.safeargs.kotlin", version.ref = "navigationVersion" } # Plugin Safe Args
